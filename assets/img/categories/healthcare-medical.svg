@@ -1,0 +1,12 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#0b1f4d"/>
+  <circle cx="200" cy="120" r="72" fill="#16305f"/>
+  <circle cx="200" cy="120" r="72" fill="none" stroke="#c9a227" stroke-width="2" opacity="0.5"/>
+
+  <g transform="translate(200,120)">
+    <rect x="-14" y="-45" width="28" height="90" rx="6" fill="#c9a227"/>
+    <rect x="-45" y="-14" width="90" height="28" rx="6" fill="#c9a227"/>
+  </g>
+
+  <text x="200" y="248" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#c9a227" text-anchor="middle" letter-spacing="1">HEALTHCARE</text>
+</svg>

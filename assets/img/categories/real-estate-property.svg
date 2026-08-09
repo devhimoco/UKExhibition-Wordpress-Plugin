@@ -1,0 +1,13 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#0b1f4d"/>
+  <circle cx="200" cy="120" r="72" fill="#16305f"/>
+  <circle cx="200" cy="120" r="72" fill="none" stroke="#c9a227" stroke-width="2" opacity="0.5"/>
+
+  <g transform="translate(200,130)">
+    <path d="M -50 0 L 0 -45 L 50 0 Z" fill="#c9a227"/>
+    <rect x="-35" y="0" width="70" height="45" fill="#e0c15a"/>
+    <rect x="-10" y="15" width="20" height="30" fill="#0b1f4d"/>
+  </g>
+
+  <text x="200" y="248" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#c9a227" text-anchor="middle" letter-spacing="1">REAL ESTATE</text>
+</svg>

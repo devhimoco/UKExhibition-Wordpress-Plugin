@@ -1,0 +1,669 @@
+/* Royal Hermes Exhibitions — Front-end styles v9.0.0
+   Brand palette: Navy #0b1f4d | Red #e63950 | Gold #c9a227
+   Responsive breakpoints used throughout this file:
+     Desktop : > 1024px
+     Tablet  : 601px – 1024px
+     Phone   : <= 600px
+*/
+.rhg-exh-wrapper {
+	--rhg-navy: #0b1f4d;
+	--rhg-red:  #e63950;
+	--rhg-gold: #c9a227;
+	--rhg-gray: #6b7280;
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 20px 16px 60px;
+	font-family: inherit;
+	box-sizing: border-box;
+}
+.rhg-exh-wrapper *,
+.rhg-exh-wrapper *::before,
+.rhg-exh-wrapper *::after { box-sizing: border-box; }
+
+/* ── "Can't find your exhibition?" banner ─────────────────────── */
+.rhg-not-found-banner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 12px;
+	background: #fff8e8;
+	border: 1px solid #f0dca0;
+	border-radius: 10px;
+	padding: 14px 20px;
+	margin-bottom: 18px;
+}
+.rhg-not-found-text {
+	font-size: 14.5px;
+	color: var(--rhg-navy);
+	font-weight: 600;
+}
+.rhg-not-found-btn {
+	flex-shrink: 0;
+	background: var(--rhg-navy);
+	color: #fff;
+	border: none;
+	padding: 11px 22px;
+	border-radius: 30px;
+	font-size: 14px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: background .18s;
+	white-space: nowrap;
+}
+.rhg-not-found-btn:hover { background: var(--rhg-red); }
+
+@media (max-width: 480px) {
+	.rhg-not-found-banner { flex-direction: column; align-items: stretch; text-align: center; }
+	.rhg-not-found-btn { width: 100%; }
+}
+
+/* ── Controls (search + per-page) ─────────────────────────────
+   IMPORTANT: the search input uses `flex-basis` for its desktop
+   width. If a parent switches to `flex-direction: column` on
+   mobile, that same flex-basis value applies to HEIGHT instead of
+   width (flex-basis always follows the main axis) — that was the
+   cause of the oversized mobile search box. Fixed below by
+   explicitly resetting flex/width/height inside the mobile query
+   rather than letting the desktop rule bleed through.
+*/
+.rhg-exh-controls { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:18px; }
+.rhg-exh-search-input {
+	flex: 1 1 260px;
+	min-width: 0;         /* prevents flex overflow on narrow screens */
+	padding: 13px 16px;   /* symmetric padding, no fixed height — matches the select box below using the same formula */
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	font-size: 15px;
+	line-height: normal;
+	outline: none;
+	transition: border-color .2s;
+	box-sizing: border-box;
+}
+.rhg-exh-search-input:focus { border-color:var(--rhg-red); }
+.rhg-exh-select {
+	flex: 0 0 140px;
+	padding: 13px 14px;   /* same padding formula as the search input above so both fields land at matching height naturally, without forcing a fixed height on the select (which has repeatedly broken text visibility in testing) */
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	font-size: 15px;
+	line-height: normal;
+	background: #fff;
+	color: #1a1a1a;
+	cursor: pointer;
+	box-sizing: border-box;
+}
+
+/* ── Category filter — dropdown list, same on every screen size ──
+   "Categories ▾" toggle button + collapsible list. Used on desktop,
+   tablet, AND phone identically — no separate inline-pill-row layout. */
+.rhg-cat-toggle-btn {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+	background: #fff;
+	border: 1.5px solid #ddd;
+	border-radius: 8px;
+	padding: 12px 16px;
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--rhg-navy);
+	cursor: pointer;
+	margin-bottom: 6px;
+}
+.rhg-cat-toggle-btn:hover { border-color: var(--rhg-red); }
+#rhg-cat-toggle-count { color: var(--rhg-red); font-weight: 700; }
+.rhg-cat-toggle-arrow { transition: transform .2s; color: var(--rhg-gray); font-size: 12px; }
+.rhg-cat-toggle-btn.rhg-cat-toggle-open .rhg-cat-toggle-arrow { transform: rotate(180deg); }
+
+.rhg-exh-categories {
+	display: none;              /* hidden until the toggle button opens it */
+	flex-direction: column;
+	flex-wrap: nowrap;
+	gap: 4px;
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	margin: 2px 0 14px;         /* positive spacing only — avoids any risk of a negative margin clipping/overlapping content against the toggle button above it */
+	padding: 8px;
+	max-width: 420px;           /* keeps the dropdown a sensible width on wide desktop screens */
+	max-height: 340px;
+	overflow-y: auto;
+}
+.rhg-exh-categories.rhg-cat-mobile-open { display: flex; }
+
+.rhg-exh-categories .rhg-cat-pill {
+	display: block;
+	width: 100%;
+	text-align: left;
+	border: none;
+	border-radius: 6px;
+	padding: 15px 12px;
+	margin: 0;
+	font-size: 14px;
+	font-weight: 600;
+	font-family: inherit;
+	line-height: 2px;       /* explicit pixel value (not a ratio) so there's no ambiguity — gives comfortable room for a wrapped 2-line name without touching the row below */
+	white-space: normal;     /* allow long names to wrap instead of overflowing */
+	background: #fff;
+	color: var(--rhg-navy);
+	cursor: pointer;
+	transition: background .15s, color .15s;
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;        /* strips native OS button chrome/padding that was fighting our own padding and pushing the text out of position */
+}
+/* :hover excludes .active so a "stuck" touch-hover state (common on
+   phones, since there's no real mouse-leave event) can never mask
+   the "selected" styling below. */
+.rhg-exh-categories .rhg-cat-pill:hover:not(.active) {
+	background: #f5f5f5;
+	color: var(--rhg-navy);
+}
+/* Solid red fill + white text — unmistakably different from the
+   unselected state, plus a checkmark so it's clear at a glance. */
+.rhg-exh-categories .rhg-cat-pill.active,
+.rhg-exh-categories .rhg-cat-pill.active:hover {
+	background: var(--rhg-red);
+	color: #fff;
+	font-weight: 700;
+}
+.rhg-exh-categories .rhg-cat-pill.active::before {
+	content: "✓  ";
+}
+
+/* ── Active filter label ────────────────────────────────────── */
+.rhg-exh-active-filter { font-size:13.5px; color:var(--rhg-gray); margin-bottom:16px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.rhg-exh-active-filter strong { color:var(--rhg-navy); }
+.rhg-clear-filter { background:none; border:1px solid #ddd; border-radius:20px; padding:2px 10px; font-size:13px; color:var(--rhg-gray); cursor:pointer; transition:all .15s; }
+.rhg-clear-filter:hover { border-color:var(--rhg-red); color:var(--rhg-red); }
+
+/* ── Grid — responsive column counts ──────────────────────────
+   Desktop (>1024px): 4 columns
+   Tablet  (769–1024px): 3 columns
+   Large phone / small tablet (481–768px): 2 columns
+   Phone (<=480px): 1 column
+*/
+.rhg-exh-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; align-items:start; }
+@media (max-width: 1024px) { .rhg-exh-grid { grid-template-columns: repeat(3,1fr); gap: 18px; } }
+@media (max-width: 768px)  { .rhg-exh-grid { grid-template-columns: repeat(2,1fr); gap: 16px; } }
+@media (max-width: 480px)  { .rhg-exh-grid { grid-template-columns: 1fr; gap: 14px; } }
+
+.rhg-exh-loading,.rhg-exh-empty { grid-column:1/-1; text-align:center; color:var(--rhg-gray); padding:40px 0; font-size:16px; }
+
+/* ══════════════════════════════════════════════════════════════
+   TABLET breakpoint (<=1024px) — general tightening
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+	.rhg-exh-wrapper { padding: 18px 14px 50px; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PHONE breakpoint (<=600px) — search/select stacking
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+	.rhg-exh-wrapper { padding: 16px 12px 44px; }
+
+	/* Controls stack vertically; the flex-basis-becomes-height bug
+	   (see note above) is avoided entirely now since neither field
+	   uses a fixed height at all — both size naturally from padding,
+	   so there's nothing for flex-direction:column to distort. */
+	.rhg-exh-controls { flex-direction: column; gap: 10px; }
+	.rhg-exh-search-input {
+		flex: none;
+		width: 100%;
+	}
+	.rhg-exh-select {
+		flex: none;
+		width: 100%;
+	}
+
+	.rhg-exh-categories { max-width: none; }
+}
+
+/* ── Card — 2× tall ─────────────────────────────────────────── */
+.rhg-exh-card {
+	background: #fff;
+	border-radius: 14px;
+	overflow: visible;
+	box-shadow: 0 4px 18px rgba(11,31,77,.08);
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	transition: transform .22s ease, box-shadow .22s ease;
+	cursor: pointer;
+	min-height: 520px;   /* tall enough for overlay to show full description */
+}
+.rhg-exh-card:hover { transform:translateY(-5px); box-shadow:0 16px 40px rgba(11,31,77,.18); z-index:20; }
+
+/* ── Image band — taller ────────────────────────────────────── */
+.rhg-exh-card-image {
+	height: 280px;       /* roughly half the card for the image */
+	background-color: var(--rhg-navy);
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-end;
+	padding: 12px;
+	flex-shrink: 0;
+	border-radius: 14px 14px 0 0;
+	overflow: hidden;
+}
+.rhg-exh-card-image::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(11,31,77,.08) 0%,rgba(11,31,77,.55) 100%); }
+.rhg-exh-card-category { position:relative; z-index:1; background:var(--rhg-red); color:#fff; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; padding:5px 12px; border-radius:20px; }
+
+/* ── Card body — all 5 fields always visible ─────────────── */
+.rhg-exh-card-body {
+	padding: 16px 16px 18px;
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+	flex: 1;
+	border-radius: 0 0 14px 14px;
+	background: #fff;
+	position: relative;
+	z-index: 1;
+}
+.rhg-exh-card-title {
+	font-size: 15px;
+	font-weight: 700;
+	color: var(--rhg-navy);
+	margin: 0 0 4px;
+	line-height: 1.35;
+}
+
+.rhg-exh-card-meta { font-size:12.5px; color:var(--rhg-gray); margin:0; display:flex; align-items:center; gap:6px; }
+.rhg-exh-icon-date::before  { content:"📅"; font-size:12px; }
+.rhg-exh-icon-place::before { content:"📍"; font-size:12px; }
+.rhg-exh-icon-cycle::before { content:"🔁"; font-size:12px; }
+
+/* Days-left badge */
+.rhg-days-left { display:inline-block; font-size:12px; font-weight:800; color:var(--rhg-navy); background:rgba(201,162,39,.12); border:1.5px solid var(--rhg-gold); border-radius:20px; padding:2px 10px; }
+.rhg-days-today { color:#fff !important; background:var(--rhg-red) !important; border-color:var(--rhg-red) !important; }
+.rhg-days-past { font-size:11.5px; color:#bbb; font-style:italic; }
+
+/* ── Hover overlay — full card, scrollable content + fixed footer ── */
+.rhg-exh-card-overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(185, 25, 50, 0.94);
+	border-radius: 14px;
+	opacity: 0;
+	transform: translateY(8px);
+	transition: opacity .25s ease, transform .25s ease;
+	pointer-events: none;
+	z-index: 10;
+	overflow: hidden;    /* clip to card boundary */
+	display: flex;
+	flex-direction: column;
+}
+.rhg-exh-card:hover .rhg-exh-card-overlay {
+	opacity: 1;
+	transform: translateY(0);
+	pointer-events: auto;
+}
+
+/* Touch devices have no real ":hover" — tapping the card toggles the
+   overlay open via JS instead (adds/removes this class). Desktop
+   mouse users keep the hover behaviour above; this only activates
+   where JS detects no true hover capability. */
+.rhg-exh-card.rhg-touch-open .rhg-exh-card-overlay {
+	opacity: 1;
+	transform: translateY(0);
+	pointer-events: auto;
+}
+
+/* Scrollable content area — everything except the button */
+.rhg-overlay-scroll {
+	padding: 18px 16px 10px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	flex: 1;              /* takes remaining space, footer stays fixed */
+	min-height: 0;         /* required for flex overflow to work correctly */
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	scrollbar-width: thin;
+	scrollbar-color: rgba(255,255,255,.4) transparent;
+}
+.rhg-overlay-scroll::-webkit-scrollbar { width: 4px; }
+.rhg-overlay-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,.4); border-radius: 4px; }
+.rhg-overlay-scroll::-webkit-scrollbar-track { background: transparent; }
+
+.rhg-overlay-title {
+	font-size: 15px;
+	font-weight: 800;
+	color: #fff;
+	margin: 0 0 6px;        /* space between name and date */
+	line-height: 1.3;
+	text-align: justify;
+}
+.rhg-overlay-date,.rhg-overlay-place,.rhg-overlay-cycle { font-size:13px; color:rgba(255,255,255,.92); margin:0; display:flex; align-items:flex-start; gap:6px; flex-wrap:wrap; }
+
+.rhg-overlay-date .rhg-days-left { color:#fff; background:rgba(255,255,255,.18); border-color:rgba(255,255,255,.45); font-size:12px; }
+.rhg-overlay-divider { border:none; border-top:1px solid rgba(255,255,255,.25); margin:6px 0; flex-shrink:0; }
+.rhg-overlay-desc { font-size:13px; color:rgba(255,255,255,.92); line-height:1.6; margin:0; text-align:justify; }
+
+/* Fixed footer — button pinned bottom-left, always visible, not part of scroll */
+.rhg-overlay-footer {
+	flex-shrink: 0;
+	padding: 10px 16px 16px;
+	display: flex;
+	justify-content: flex-start;   /* pin button to the left */
+}
+
+/* Register button */
+.rhg-exh-register-btn { background:#fff; color:var(--rhg-red); border:none; padding:10px 20px; border-radius:30px; font-size:14px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:6px; transition:background .18s,color .18s; }
+.rhg-exh-register-btn:hover { background:var(--rhg-navy); color:#fff; }
+.rhg-exh-arrow { display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; border-radius:50%; background:rgba(230,57,80,.18); }
+
+/* Days badge */
+.rhg-days-left { display:inline-block; font-size:12px; font-weight:800; color:var(--rhg-navy); background:rgba(201,162,39,.12); border:1.5px solid var(--rhg-gold); border-radius:20px; padding:2px 10px; }
+.rhg-days-today { color:#fff !important; background:var(--rhg-red) !important; border-color:var(--rhg-red) !important; }
+.rhg-days-past { font-size:11.5px; color:#bbb; font-style:italic; }
+
+/* ── Pagination ─────────────────────────────────────────────── */
+.rhg-exh-pagination { display:flex; justify-content:center; gap:6px; margin:28px 0; flex-wrap:wrap; }
+.rhg-exh-pagination button {
+	min-width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	border: 1px solid #ddd;
+	background: #fff;
+	color: var(--rhg-navy);
+	font-weight: 600;
+	font-size: 13px;
+	cursor: pointer;
+	transition: all .2s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	line-height: 1;
+}
+.rhg-exh-pagination button.active { background:var(--rhg-red); border-color:var(--rhg-red); color:#fff; }
+.rhg-exh-pagination button:hover:not(.active) { border-color:var(--rhg-red); color:var(--rhg-red); }
+.rhg-exh-updated { text-align:center; color:var(--rhg-gray); font-size:12px; margin:0; }
+.rhg-exh-copyright { text-align:center; color:var(--rhg-gray); font-size:11px; margin:6px 0 0; opacity:.8; }
+
+/* ══════════════════════════════════════════════════════════════
+   PHONE (<=600px) — card proportions, touch targets, modal padding
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+	/* Slightly shorter cards on phones — the 4-field body doesn't
+	   need as much vertical room when the column is full-width. */
+	.rhg-exh-card { min-height: 440px; }
+	.rhg-exh-card-image { height: 200px; }
+	.rhg-exh-card-title { font-size: 14px; }
+	.rhg-exh-card-meta { font-size: 12px; }
+
+	/* Bigger tap targets for pagination on touch screens */
+	.rhg-exh-pagination button { min-width: 40px; height: 40px; font-size: 14px; }
+
+	/* Modal: tighter padding so content isn't cramped on narrow screens */
+	.rhg-modal-header { padding: 26px 18px 16px; }
+	.rhg-modal-logo { width: 90px; height: 90px; }
+	.rhg-modal-expo-name { font-size: 18px; }
+	.rhg-modal-meta-text { font-size: 14px; }
+	#rhg-exh-register-form { padding: 18px 18px 22px; }
+
+	/* Combo dropdown items — bigger touch targets */
+	.rhg-combo-item { padding: 12px 14px; font-size: 14px; }
+	.rhg-combo-menu { max-height: 200px; }
+
+	/* Success popup — tighter padding */
+	.rhg-success-box { padding: 32px 22px 26px; }
+	.rhg-success-icon { width: 56px; height: 56px; font-size: 26px; }
+	.rhg-success-title { font-size: 19px; }
+}
+
+/* Extra-small phones (<=360px) — a bit more breathing room */
+@media (max-width: 360px) {
+	.rhg-exh-card-image { height: 170px; }
+	.rhg-exh-card { min-height: 400px; }
+}
+
+/* ── Modal ──────────────────────────────────────────────────── */
+/* NOTE: hardcoded hex colors used here (not var(--rhg-navy) etc.)
+   because the modal is rendered as a SIBLING of .rhg-exh-wrapper in
+   the DOM, not a descendant — CSS custom properties don't cascade
+   to siblings, so var() would silently fail and show as white. */
+
+.rhg-exh-modal { position:fixed; inset:0; z-index:99999; display:flex; align-items:center; justify-content:center; }
+
+/* Overlay: semi-transparent white so the page fades to background */
+.rhg-exh-modal-overlay { position:absolute; inset:0; background:rgba(255,255,255,.55); backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px); }
+
+.rhg-exh-modal-box {
+	position: relative;
+	background: #0b1f4d;
+	border-radius: 18px;
+	max-width: 480px;
+	width: 92%;
+	max-height: 92vh;
+	overflow-y: auto;
+	z-index: 1;
+	box-shadow: 0 24px 70px rgba(0,0,0,.4);
+	/* Reserves equal gutter space on both edges so the scrollbar
+	   doesn't eat into the right-side padding only — keeps the
+	   form fields visually centred left/right. */
+	scrollbar-gutter: stable both-edges;
+}
+
+/* Close button — white on navy */
+.rhg-exh-modal-close { position:absolute; top:14px; right:16px; background:none; border:none; font-size:28px; color:#fff; cursor:pointer; z-index:10; line-height:1; font-weight:300; opacity:.8; }
+.rhg-exh-modal-close:hover { opacity:1; color:#c9a227; }
+
+/* ── Modal header — navy bg, centered logo, white text ──── */
+.rhg-modal-header {
+	background: #0b1f4d;
+	padding: 32px 24px 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	border-radius: 18px 18px 0 0;
+	border-bottom: 2px solid rgba(255,255,255,.12);
+}
+
+.rhg-modal-logo-wrap { margin-bottom: 16px; }
+.rhg-modal-logo {
+	width: 120px;
+	height: 120px;
+	object-fit: contain;
+	display: block;
+	filter: drop-shadow(0 2px 8px rgba(201,162,39,.35));
+}
+
+/* Exhibition name — white, large */
+.rhg-modal-expo-name {
+	font-size: 20px;
+	font-weight: 800;
+	color: #fff;
+	margin: 0 0 14px;
+	line-height: 1.3;
+	text-align: center;
+}
+
+/* Date + location rows */
+.rhg-modal-expo-meta { display:flex; flex-direction:column; gap:8px; width:100%; }
+.rhg-modal-meta-row { display:flex; align-items:center; justify-content:center; gap:8px; margin:0; }
+.rhg-modal-icon { font-size:17px; }
+.rhg-modal-meta-text { font-size:16px; font-weight:600; color:rgba(255,255,255,.9); }
+
+/* Gold divider strip under header */
+.rhg-modal-divider { height: 3px; background: #c9a227; margin: 0; }
+
+/* Form area — navy background, white labels */
+#rhg-exh-register-form { padding:22px 24px 28px; background:#0b1f4d; border-radius:0 0 18px 18px; }
+#rhg-exh-register-form label { display:block; font-size:14px; font-weight:600; color:#fff; margin:14px 0 6px; }
+#rhg-exh-register-form input,
+#rhg-exh-register-form select {
+	width:100%;
+	height:44px;              /* explicit height — guarantees all fields match exactly */
+	padding:0 14px;
+	border:1px solid rgba(255,255,255,.25);
+	border-radius:8px;
+	font-size:14px;
+	font-family:inherit;
+	box-sizing:border-box;
+	transition:border-color .2s;
+	background:#fff;
+	color:#1a1a1a;
+	-webkit-appearance:none;
+	appearance:none;
+}
+#rhg-exh-register-form input:focus,
+#rhg-exh-register-form select:focus { outline:none; border-color:#c9a227; box-shadow:0 0 0 2px rgba(201,162,39,.25); }
+
+/* Submit button — white text on navy, red on hover */
+.rhg-exh-submit-btn {
+	margin-top: 22px;
+	width: 100%;
+	background: #0b1f4d;
+	color: #fff;
+	border: 2px solid rgba(255,255,255,.4);
+	padding: 14px;
+	border-radius: 30px;
+	font-size: 16px;
+	font-weight: 800;
+	cursor: pointer;
+	transition: background .2s, border-color .2s;
+	letter-spacing: .02em;
+}
+.rhg-exh-submit-btn:hover { background: #e63950; border-color: #e63950; color: #fff; }
+.rhg-exh-submit-btn:disabled { opacity:.4; cursor:not-allowed; }
+
+.rhg-exh-form-message { margin-top:14px; font-size:14px; border-radius:8px; display:none; }
+.rhg-exh-form-message.success { display:block; background:rgba(46,160,67,.2); color:#7ddd7d; padding:11px 14px; border:1px solid rgba(46,160,67,.3); }
+.rhg-exh-form-message.error   { display:block; background:rgba(230,57,80,.2); color:#ffaaaa; padding:11px 14px; border:1px solid rgba(230,57,80,.3); }
+
+/* ══════════════════════════════════════════════════════════════
+   CUSTOM COMBO DROPDOWN — replaces native <datalist>
+   Shows ONLY our own data, no browser-saved autofill entries mixed
+   in (which is what caused the inconsistent black dropdown in Edge).
+   ══════════════════════════════════════════════════════════════ */
+
+.rhg-combo { position: relative; }
+
+/* Give the input extra right padding so text never sits under the arrow */
+.rhg-combo .rhg-combo-input {
+	padding-right: 38px !important;
+	cursor: text;
+}
+
+.rhg-combo-arrow {
+	position: absolute;
+	right: 14px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #0b1f4d;
+	font-size: 12px;
+	pointer-events: auto;
+	cursor: pointer;
+	user-select: none;
+	line-height: 1;
+}
+
+.rhg-combo-menu {
+	display: none;
+	position: absolute;
+	top: calc(100% + 4px);
+	left: 0;
+	right: 0;
+	max-height: 220px;
+	overflow-y: auto;
+	background: #fff;
+	border: 1px solid rgba(255,255,255,.3);
+	border-radius: 8px;
+	box-shadow: 0 10px 30px rgba(0,0,0,.35);
+	z-index: 100;
+	list-style: none;
+	margin: 0;
+	padding: 6px 0;
+	scrollbar-width: thin;
+}
+.rhg-combo-menu.open { display: block; }
+
+.rhg-combo-item {
+	padding: 9px 14px;
+	font-size: 13.5px;
+	color: #1a1a1a;
+	cursor: pointer;
+	transition: background .12s, color .12s;
+}
+.rhg-combo-item:hover {
+	background: #e63950;
+	color: #fff;
+}
+
+.rhg-combo-empty {
+	padding: 9px 14px;
+	font-size: 12.5px;
+	color: #999;
+	font-style: italic;
+	cursor: default;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SUCCESS POPUP — shown after successful registration
+   ══════════════════════════════════════════════════════════════ */
+
+.rhg-success-box {
+	position: relative;
+	background: #0b1f4d;
+	border-radius: 18px;
+	max-width: 380px;
+	width: 88%;
+	padding: 40px 30px 32px;
+	text-align: center;
+	box-shadow: 0 24px 70px rgba(0,0,0,.4);
+	z-index: 1;
+}
+
+.rhg-success-icon {
+	width: 68px;
+	height: 68px;
+	border-radius: 50%;
+	background: #c9a227;
+	color: #0b1f4d;
+	font-size: 32px;
+	font-weight: 800;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto 20px;
+	box-shadow: 0 0 0 6px rgba(201,162,39,.18);
+}
+
+.rhg-success-title {
+	font-size: 22px;
+	font-weight: 800;
+	color: #fff;
+	margin: 0 0 10px;
+}
+
+.rhg-success-message {
+	font-size: 14.5px;
+	color: rgba(255,255,255,.85);
+	line-height: 1.5;
+	margin: 0 0 26px;
+}
+
+.rhg-success-close-btn {
+	background: #c9a227;
+	color: #0b1f4d;
+	border: none;
+	padding: 12px 32px;
+	border-radius: 30px;
+	font-size: 15px;
+	font-weight: 800;
+	cursor: pointer;
+	transition: background .2s;
+}
+.rhg-success-close-btn:hover { background: #fff; }

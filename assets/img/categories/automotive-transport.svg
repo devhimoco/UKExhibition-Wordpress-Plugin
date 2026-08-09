@@ -1,0 +1,16 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#0b1f4d"/>
+  <circle cx="200" cy="120" r="72" fill="#16305f"/>
+  <circle cx="200" cy="120" r="72" fill="none" stroke="#c9a227" stroke-width="2" opacity="0.5"/>
+
+  <g transform="translate(200,125)">
+    <rect x="-55" y="-10" width="110" height="35" rx="8" fill="#c9a227"/>
+    <path d="M -40 -10 L -25 -35 L 25 -35 L 40 -10 Z" fill="#c9a227"/>
+    <circle cx="-30" cy="27" r="14" fill="#0b1f4d"/>
+    <circle cx="30" cy="27" r="14" fill="#0b1f4d"/>
+    <circle cx="-30" cy="27" r="6" fill="#c9a227"/>
+    <circle cx="30" cy="27" r="6" fill="#c9a227"/>
+  </g>
+
+  <text x="200" y="248" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#c9a227" text-anchor="middle" letter-spacing="1">AUTOMOTIVE</text>
+</svg>

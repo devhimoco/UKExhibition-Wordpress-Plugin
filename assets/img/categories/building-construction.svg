@@ -1,0 +1,15 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#0b1f4d"/>
+  <circle cx="200" cy="120" r="72" fill="#16305f"/>
+  <circle cx="200" cy="120" r="72" fill="none" stroke="#c9a227" stroke-width="2" opacity="0.5"/>
+
+  <g transform="translate(200,145)">
+    <rect x="-70" y="-30" width="30" height="70" fill="#c9a227"/>
+    <rect x="-32" y="-55" width="34" height="95" fill="#e0c15a"/>
+    <rect x="8" y="-15" width="30" height="55" fill="#c9a227"/>
+    <rect x="45" y="-40" width="28" height="80" fill="#e0c15a"/>
+    <rect x="-70" y="40" width="143" height="6" fill="#0b1f4d"/>
+  </g>
+
+  <text x="200" y="248" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#c9a227" text-anchor="middle" letter-spacing="1">CONSTRUCTION</text>
+</svg>

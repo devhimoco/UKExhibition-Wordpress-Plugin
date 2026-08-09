@@ -1,0 +1,17 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#0b1f4d"/>
+  <circle cx="200" cy="120" r="72" fill="#16305f"/>
+  <circle cx="200" cy="120" r="72" fill="none" stroke="#c9a227" stroke-width="2" opacity="0.5"/>
+
+  <g transform="translate(200,120)">
+    <g fill="#c9a227">
+      <rect x="-38" y="-50" width="6" height="100" rx="3"/>
+      <rect x="-50" y="-50" width="5" height="30" rx="2"/>
+      <rect x="-40" y="-50" width="5" height="30" rx="2"/>
+      <rect x="-30" y="-50" width="5" height="30" rx="2"/>
+    </g>
+    <path d="M 30 -50 C 15 -50 10 -25 20 -5 L 20 50 L 32 50 L 32 -5 C 42 -25 45 -50 30 -50 Z" fill="#c9a227"/>
+  </g>
+
+  <text x="200" y="248" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#c9a227" text-anchor="middle" letter-spacing="1">FOOD &amp; DRINK</text>
+</svg>

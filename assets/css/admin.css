@@ -1,0 +1,179 @@
+/* Royal Hermes Exhibitions — Admin styles */
+
+.rhg-admin-wrap h1 { margin-bottom: 16px; }
+
+/* Filter bar */
+.rhg-filter-bar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
+	margin: 16px 0 12px;
+	background: #fff;
+	padding: 14px 16px;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+}
+
+.rhg-filter-input {
+	height: 36px;
+	padding: 0 10px;
+	border: 1px solid #8c8f94;
+	border-radius: 3px;
+	font-size: 13px;
+	min-width: 180px;
+}
+
+.rhg-filter-select {
+	height: 36px;
+	padding: 0 8px;
+	border: 1px solid #8c8f94;
+	border-radius: 3px;
+	font-size: 13px;
+	background: #fff;
+	min-width: 140px;
+}
+
+.rhg-filter-input:focus,
+.rhg-filter-select:focus {
+	border-color: #e63950;
+	outline: none;
+	box-shadow: 0 0 0 1px #e63950;
+}
+
+.rhg-hidden { display: none !important; }
+
+/* Result count */
+.rhg-result-count {
+	font-size: 13px;
+	color: #50575e;
+	margin: 4px 0 12px;
+}
+
+/* Table */
+.rhg-table th {
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	color: #0b1f4d;
+}
+
+/* Registration count badge */
+.rhg-badge {
+	display: inline-block;
+	background: #e63950;
+	color: #fff;
+	font-size: 12px;
+	font-weight: 700;
+	border-radius: 20px;
+	padding: 2px 10px;
+	min-width: 28px;
+	text-align: center;
+}
+
+/* Exhibition detail meta line */
+.rhg-expo-meta {
+	color: #50575e;
+	font-size: 14px;
+	margin: 0 0 20px;
+}
+
+/* ── Accordion — one simple table (Name | Number | Register). Each
+   category is a real <tr>; clicking it reveals a second <tr> right
+   below (spanning all 3 columns) containing that category's
+   exhibition list. Plain rows and cells throughout — the styling
+   below is polish on top of a structure that reads fine even
+   without it. */
+#rhg-cat-accordion { margin-top: 8px; }
+
+.rhg-cat-header td {
+	cursor: pointer;
+	user-select: none;
+	background: #f9f9f9;
+	transition: background .15s;
+	vertical-align: middle;
+	padding: 14px 18px;
+}
+.rhg-cat-name-cell { border-left: 3px solid #dcdcde; }
+.rhg-cat-stat-cell { text-align: center; }
+
+.rhg-cat-header.rhg-cat-has-regs td { background: #f0f8f0; }
+.rhg-cat-header.rhg-cat-has-regs .rhg-cat-name-cell { border-left-color: #8fc98f; }
+.rhg-cat-header:hover td { background: #f0f0f0; }
+.rhg-cat-header.rhg-cat-has-regs:hover td { background: #e8f4e8; }
+.rhg-cat-header.rhg-cat-open td { background: #0b1f4d; }
+.rhg-cat-header.rhg-cat-open .rhg-cat-name-cell { border-left-color: #c9a227; }
+.rhg-cat-header.rhg-cat-open .rhg-cat-name,
+.rhg-cat-header.rhg-cat-open .rhg-cat-toggle-icon { color: #fff; }
+.rhg-cat-header.rhg-cat-open .rhg-cat-stat-cell { color: rgba(255,255,255,.8); }
+.rhg-cat-header.rhg-cat-open .rhg-cat-reg-has { color: #7ddd7d !important; }
+
+.rhg-cat-toggle-icon {
+	font-size: 11px;
+	color: #888;
+	transition: transform .2s;
+	display: inline-block;
+	width: 14px;
+	text-align: center;
+	margin-right: 8px;
+}
+
+.rhg-cat-name {
+	font-size: 15px;
+	font-weight: 700;
+	color: #0b1f4d;
+}
+
+.rhg-cat-stat-cell {
+	font-size: 13px;
+	color: #50575e;
+	white-space: nowrap;
+}
+
+.rhg-cat-reg-count { font-weight: 600; }
+.rhg-cat-reg-has   { color: #1d7a3c !important; font-size: 14px !important; }
+
+/* The expanded row's single wide cell — no padding of its own, so
+   the nested exhibition table sits flush inside it */
+.rhg-cat-body-cell { padding: 0 !important; }
+
+/* Nested exhibition table sits flush inside the expanded row —
+   remove its own outer border/shadow so there's no double-border look. */
+.rhg-expo-table { border: none !important; box-shadow: none !important; }
+.rhg-expo-registered td { background: #fafff8 !important; }
+
+/* Category image thumbnail preview in the settings table */
+.rhg-cat-thumb {
+	width: 60px;
+	height: 45px;
+	object-fit: cover;
+	border-radius: 4px;
+	border: 1px solid #dcdcde;
+	display: block;
+}
+.rhg-cat-file { font-size: 12px; max-width: 160px; }
+
+/* Copyright footer at bottom of every HimoEXPO admin page */
+.rhg-copyright-footer {
+	margin-top: 40px;
+	padding-top: 16px;
+	border-top: 1px solid #e2e2e2;
+	font-size: 12px;
+	color: #888;
+	text-align: center;
+}
+
+/* "Not Found" badge on manually-typed exhibition requests */
+.rhg-badge-not-found {
+	display: inline-block;
+	background: #fdeaea;
+	color: #e63950;
+	font-size: 10px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: .03em;
+	padding: 2px 7px;
+	border-radius: 4px;
+	margin-right: 6px;
+	vertical-align: middle;
+}

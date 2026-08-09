@@ -1,0 +1,26 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#0b1f4d"/>
+  <circle cx="200" cy="120" r="72" fill="#16305f"/>
+  <circle cx="200" cy="120" r="72" fill="none" stroke="#c9a227" stroke-width="2" opacity="0.5"/>
+
+  <g transform="translate(200,120)">
+    <rect x="-35" y="-35" width="70" height="70" rx="6" fill="#c9a227"/>
+    <rect x="-18" y="-18" width="36" height="36" rx="3" fill="#0b1f4d"/>
+    <g stroke="#c9a227" stroke-width="4">
+      <line x1="-35" y1="-20" x2="-50" y2="-20"/>
+      <line x1="-35" y1="0" x2="-50" y2="0"/>
+      <line x1="-35" y1="20" x2="-50" y2="20"/>
+      <line x1="35" y1="-20" x2="50" y2="-20"/>
+      <line x1="35" y1="0" x2="50" y2="0"/>
+      <line x1="35" y1="20" x2="50" y2="20"/>
+      <line x1="-20" y1="-35" x2="-20" y2="-50"/>
+      <line x1="0" y1="-35" x2="0" y2="-50"/>
+      <line x1="20" y1="-35" x2="20" y2="-50"/>
+      <line x1="-20" y1="35" x2="-20" y2="50"/>
+      <line x1="0" y1="35" x2="0" y2="50"/>
+      <line x1="20" y1="35" x2="20" y2="50"/>
+    </g>
+  </g>
+
+  <text x="200" y="248" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#c9a227" text-anchor="middle" letter-spacing="1">TECHNOLOGY</text>
+</svg>

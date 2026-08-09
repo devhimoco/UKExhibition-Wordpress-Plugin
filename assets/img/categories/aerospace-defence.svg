@@ -1,0 +1,16 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#0b1f4d"/>
+  <circle cx="200" cy="120" r="72" fill="#16305f"/>
+  <circle cx="200" cy="120" r="72" fill="none" stroke="#c9a227" stroke-width="2" opacity="0.5"/>
+
+  <g transform="translate(200,120) rotate(-20)">
+    <rect x="-6" y="-55" width="12" height="110" rx="6" fill="#c9a227"/>
+    <path d="M -6 -10 L -70 25 L -70 35 L -6 15 Z" fill="#c9a227"/>
+    <path d="M 6 -10 L 70 25 L 70 35 L 6 15 Z" fill="#c9a227"/>
+    <path d="M -6 40 L -25 58 L -25 63 L -6 55 Z" fill="#c9a227"/>
+    <path d="M 6 40 L 25 58 L 25 63 L 6 55 Z" fill="#c9a227"/>
+    <path d="M -6 -55 L 0 -68 L 6 -55 Z" fill="#c9a227"/>
+  </g>
+
+  <text x="200" y="248" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#c9a227" text-anchor="middle" letter-spacing="1">AEROSPACE</text>
+</svg>

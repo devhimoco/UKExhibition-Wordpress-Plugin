@@ -1,0 +1,17 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#0b1f4d"/>
+  <circle cx="200" cy="120" r="72" fill="#16305f"/>
+  <circle cx="200" cy="120" r="72" fill="none" stroke="#c9a227" stroke-width="2" opacity="0.5"/>
+
+  <g transform="translate(200,120)">
+    <circle cx="0" cy="0" r="45" fill="#c9a227"/>
+    <g stroke="#0b1f4d" stroke-width="3" fill="none">
+      <path d="M -45 0 L 45 0"/>
+      <path d="M 0 -45 L 0 45"/>
+      <path d="M -32 -32 C -10 -10 10 -10 32 -32"/>
+      <path d="M -32 32 C -10 10 10 10 32 32"/>
+    </g>
+  </g>
+
+  <text x="200" y="248" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#c9a227" text-anchor="middle" letter-spacing="1">SPORTS</text>
+</svg>

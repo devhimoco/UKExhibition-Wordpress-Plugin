@@ -1,0 +1,14 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#0b1f4d"/>
+  <circle cx="200" cy="120" r="72" fill="#16305f"/>
+  <circle cx="200" cy="120" r="72" fill="none" stroke="#c9a227" stroke-width="2" opacity="0.5"/>
+
+  <g transform="translate(200,120)">
+    <path d="M -45 -5 L -10 -30 L -10 30 L -45 5 Z" fill="#c9a227"/>
+    <rect x="-52" y="-8" width="10" height="16" rx="3" fill="#c9a227"/>
+    <path d="M -10 -30 L 40 -45 L 40 45 L -10 30 Z" fill="#e0c15a"/>
+    <path d="M -30 8 L -22 35 C -22 42 -35 42 -37 35 L -40 8 Z" fill="#c9a227"/>
+  </g>
+
+  <text x="200" y="248" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#c9a227" text-anchor="middle" letter-spacing="1">MARKETING</text>
+</svg>
